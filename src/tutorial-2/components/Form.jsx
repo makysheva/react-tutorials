@@ -34,10 +34,22 @@ function FormComponent() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" placeholder="E-Mail" onChange={onChangeInput} name="email" />
-      <input type="password" placeholder="Пароль" onChange={onChangeInput} name="password" />
-      <button type="submit" onClick={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form__wrap">
+      <input
+        type="text"
+        placeholder="E-Mail"
+        onChange={onChangeInput}
+        name="email"
+        className="form__input"
+      />
+      <input
+        type="password"
+        placeholder="Пароль"
+        onChange={onChangeInput}
+        name="password"
+        className="form__input"
+      />
+      <button type="submit" onClick={handleSubmit} className="form__btn">
         Войти
       </button>
     </form>
