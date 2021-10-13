@@ -23,11 +23,13 @@ function FormComponent() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const formEl = document.getElementsByClassName('form__wrap');
 
     if (handleValidation()) {
       console.log({ emailInputValue, passwordInputValue });
       emailInputValue = '';
       passwordInputValue = '';
+      formEl[0].reset();
     } else {
       alert('Пожалуйста, заполните поля');
     }
