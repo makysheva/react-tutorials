@@ -4,15 +4,15 @@ function FormComponent() {
 
   function onChangeInput(e) {
     if (e.target.name === 'email') {
-      emailInputValue = e.target.value;
+      emailInputValue = e.target.value.trim();
     } else {
-      passwordInputValue = e.target.value;
+      passwordInputValue = e.target.value.trim();
     }
   }
 
   const handleValidation = () => {
     let formIsValid = true;
-    if (!emailInputValue.trim() || !passwordInputValue.trim()) {
+    if (!emailInputValue || !passwordInputValue) {
       formIsValid = false;
     } else {
       formIsValid = true;
@@ -23,13 +23,12 @@ function FormComponent() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const formEl = document.getElementsByClassName('form__wrap');
 
     if (handleValidation()) {
       console.log({ emailInputValue, passwordInputValue });
       emailInputValue = '';
       passwordInputValue = '';
-      formEl[0].reset();
+      e.target.reset();
     } else {
       alert('Пожалуйста, заполните поля');
     }
@@ -51,7 +50,7 @@ function FormComponent() {
         name="password"
         className="form__input"
       />
-      <button type="submit" onClick={handleSubmit} className="form__btn">
+      <button type="submit" className="form__btn">
         Войти
       </button>
     </form>
