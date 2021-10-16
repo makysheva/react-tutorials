@@ -1,7 +1,7 @@
-const container = document.getElementById('root');
-const valueTask = document.getElementById('valueTask');
-const addBtn = document.getElementById('addBtn');
-const ul = document.createElement('ul');
+// const container = document.getElementById('root');
+// const valueTask = document.getElementById('valueTask');
+// const addBtn = document.getElementById('addBtn');
+// const ul = document.createElement('ul');
 let tasks = [];
 const ulElem = document.querySelector('ul');
 const inputElem = document.querySelector('input');
