@@ -5,31 +5,35 @@ import EmptyBlock from './components/EmptyBlock';
 import { adjectivesArr, nounsArr } from './utils/phrase';
 
 const App = () => {
-  const [adjectivesWords, setAdjectivesWords] = React.useState([]);
-  const [nounsWords, setNounsWords] = React.useState([]);
+  const [phrases, setPhrases] = React.useState([]);
 
   const generateBtn = () => {
-    let newAdjectivesArr = [...adjectivesWords, ...adjectivesArr];
-    setAdjectivesWords(newAdjectivesArr);
+    const arrayRandElement = (arr) => {
+      let rand = Math.floor(Math.random() * arr.length);
+      return arr[rand];
+    };
 
-    let newNounsArr = [...nounsWords, ...nounsArr];
-    setNounsWords(newNounsArr);
+    const generatePhrase = adjectivesArr.map(() => {
+      let adjectivesRand = arrayRandElement(adjectivesArr);
+      let adjectivesSecondWordRand = arrayRandElement(adjectivesArr);
+      let nounsRand = arrayRandElement(nounsArr);
+      return [adjectivesRand, adjectivesSecondWordRand, nounsRand].join(' ');
+    });
+
+    setPhrases(generatePhrase);
   };
 
   const removeClick = () => {
-    setAdjectivesWords([]);
-    setNounsWords([]);
+    setPhrases([]);
   };
+  console.log(phrases);
 
   return (
     <div className="container">
       <div className="wrapper">
-        {adjectivesWords.length === 0 || nounsWords.length === 0 ? (
-          <EmptyBlock />
-        ) : (
-          <Phrase adjectives={adjectivesWords} nouns={nounsWords} />
-        )}
-
+        <div className="list">
+          {!phrases.length ? <EmptyBlock /> : phrases.map((str) => <Phrase text={str} key={str} />)}
+        </div>
         <button className="btn btn_generate" onClick={generateBtn}>
           Сгенерировать
         </button>

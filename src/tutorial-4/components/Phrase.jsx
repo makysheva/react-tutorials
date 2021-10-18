@@ -1,17 +1,7 @@
-const Phrase = ({ adjectives, nouns }) => {
-  function arrayRandElement(arr) {
-    var rand = Math.floor(Math.random() * arr.length);
-    return arr[rand];
-  }
+const Phrase = ({ text }) => {
   return (
-    <div className="list">
-      {adjectives.map((adjective) => (
-        <div className="block" key={adjective}>
-          <h3>
-            {arrayRandElement(adjectives)} {arrayRandElement(adjectives)} {arrayRandElement(nouns)}
-          </h3>
-        </div>
-      ))}
+    <div className="block">
+      <h3>{text}</h3>
     </div>
   );
 };
