@@ -13,20 +13,16 @@ const App = () => {
       return arr[rand];
     };
 
-    const generatePhrase = adjectivesArr.map(() => {
-      let adjectivesRand = arrayRandElement(adjectivesArr);
-      let adjectivesSecondWordRand = arrayRandElement(adjectivesArr);
-      let nounsRand = arrayRandElement(nounsArr);
-      return [adjectivesRand, adjectivesSecondWordRand, nounsRand].join(' ');
-    });
+    const generatePhrase = `${arrayRandElement(adjectivesArr)} ${arrayRandElement(
+      adjectivesArr,
+    )} ${arrayRandElement(nounsArr)}`;
 
-    setPhrases(generatePhrase);
+    setPhrases([generatePhrase, ...phrases]);
   };
 
   const removeClick = () => {
     setPhrases([]);
   };
-  console.log(phrases);
 
   return (
     <div className="container">
