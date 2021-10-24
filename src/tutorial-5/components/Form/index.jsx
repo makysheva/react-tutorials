@@ -14,56 +14,30 @@ const Form = ({ onShow }) => {
   const [comments, setComments] = React.useState(
     JSON.parse(localStorage.getItem('allComments')) || [],
   );
-  const [inputValue, setInputValue] = React.useState('');
 
-  let nameInputValue = '';
-  let emailInputValue = '';
-  let commentInputValue = '';
+  const [fields, setFields] = React.useState({ name: '', email: '', text: '' });
 
   React.useEffect(() => {
     localStorage.setItem('allComments', JSON.stringify(comments));
   }, [comments]);
 
   const handleChangeInput = (e) => {
-    const { value, name } = e.target;
-    if (name === 'name') {
-      nameInputValue = value;
-    }
+    const { name, value } = e.target;
 
-    if (name === 'email') {
-      emailInputValue = value;
-    }
-
-    if (name === 'comment') {
-      commentInputValue = value;
-    }
-
-    setInputValue(nameInputValue, emailInputValue, commentInputValue);
+    setFields({ ...fields, [name]: value });
   };
 
-  const handleShowComments = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    setComments([
-      ...comments,
-      inputValue,
-      {
-        fullName: nameInputValue,
-        email: emailInputValue,
-        createdAt: '',
-        text: commentInputValue,
-      },
-    ]);
+    setComments([...comments, fields]);
 
     if (onShow) {
       onShow(comments);
-      //   setComments([]);
     }
 
-    setInputValue('');
-    nameInputValue = '';
-    emailInputValue = '';
-    commentInputValue = '';
+    setComments([]);
+    setFields({ name: '', email: '', text: '' });
   };
 
   return (
@@ -81,7 +55,7 @@ const Form = ({ onShow }) => {
                 label="Имя"
                 variant="outlined"
                 className={styles.input}
-                value={inputValue}
+                value={fields.name || ''}
                 onChange={handleChangeInput}
                 name="name"
               />
@@ -91,7 +65,7 @@ const Form = ({ onShow }) => {
                 variant="outlined"
                 type="email"
                 className={styles.input}
-                value={inputValue}
+                value={fields.email || ''}
                 onChange={handleChangeInput}
                 name="email"
               />
@@ -103,15 +77,15 @@ const Form = ({ onShow }) => {
                 placeholder="Текст..."
                 multiline
                 className={styles.textarea}
-                value={inputValue}
+                value={fields.text || ''}
                 onChange={handleChangeInput}
-                name="comment"
+                name="text"
               />
               <Button
                 variant="contained"
                 className={styles.button}
                 type="submit"
-                onClick={handleShowComments}>
+                onClick={handleSubmit}>
                 Отправить
               </Button>
             </Box>

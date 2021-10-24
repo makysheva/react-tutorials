@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Components.module.scss';
+import styles from './Component.module.scss';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';
@@ -11,7 +11,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 
-const Comments = ({ fullname, email, comment }) => {
+const Comment = ({ objData }) => {
   return (
     <React.Fragment>
       <CssBaseline />
@@ -25,12 +25,12 @@ const Comments = ({ fullname, email, comment }) => {
               <List>
                 <ListItem>
                   <ListItemAvatar>
-                    <Avatar sx={{ bgcolor: deepOrange[500] }} alt={fullname}>
+                    <Avatar sx={{ bgcolor: deepOrange[500] }} alt="{props.fullname}">
                       N
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText
-                    primary={fullname}
+                    // primary="{props.fullname}"
                     secondary={
                       <React.Fragment>
                         <Typography
@@ -38,7 +38,7 @@ const Comments = ({ fullname, email, comment }) => {
                           component="span"
                           variant="body2"
                           color="text.primary"></Typography>
-                        {comment}
+                        {/* "{props.text}" */}
                       </React.Fragment>
                     }
                   />
@@ -46,12 +46,12 @@ const Comments = ({ fullname, email, comment }) => {
 
                 <ListItem>
                   <ListItemAvatar>
-                    <Avatar sx={{ bgcolor: deepPurple[500] }} alt={fullname}>
+                    <Avatar sx={{ bgcolor: deepPurple[500] }} alt="{props.fullname}">
                       OP
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText
-                    primary={fullname}
+                    // primary="{props.fullname}"
                     secondary={
                       <React.Fragment>
                         <Typography
@@ -59,7 +59,7 @@ const Comments = ({ fullname, email, comment }) => {
                           component="span"
                           variant="body2"
                           color="text.primary"></Typography>
-                        {comment}
+                        {/* "{props.text}" */}
                       </React.Fragment>
                     }
                   />
@@ -67,12 +67,12 @@ const Comments = ({ fullname, email, comment }) => {
 
                 <ListItem>
                   <ListItemAvatar>
-                    <Avatar sx={{ bgcolor: deepOrange[500] }} alt={fullname}>
+                    <Avatar sx={{ bgcolor: deepOrange[500] }} alt="{props.fullname}">
                       JJ
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText
-                    primary={fullname}
+                    // primary="{props.fullname}"
                     secondary={
                       <React.Fragment>
                         <Typography
@@ -80,7 +80,7 @@ const Comments = ({ fullname, email, comment }) => {
                           component="span"
                           variant="body2"
                           color="text.primary"></Typography>
-                        {comment}
+                        {/* {props.text} */}
                       </React.Fragment>
                     }
                   />
@@ -94,4 +94,4 @@ const Comments = ({ fullname, email, comment }) => {
   );
 };
 
-export default Comments;
+export default Comment;

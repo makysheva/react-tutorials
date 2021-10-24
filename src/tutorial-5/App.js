@@ -1,20 +1,18 @@
 import React from 'react';
 
-import Comments from './components/Comments';
+import Comment from './components/Comment';
 import Form from './components/Form';
 
 const App = () => {
   const [mainList, setMainList] = React.useState([]);
 
-  const onShowComments = (arr) => {
-    setMainList([...mainList, ...arr]);
+  const onShowComments = (obj) => {
+    setMainList([...mainList, obj]);
   };
-
-  console.log(mainList);
 
   return (
     <>
-      <Comments onShow={mainList} />
+      <Comment objData={mainList} />
       <Form onShow={onShowComments} />
     </>
   );
