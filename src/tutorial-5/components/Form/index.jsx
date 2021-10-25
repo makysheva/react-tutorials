@@ -35,9 +35,7 @@ const Form = ({ onShow }) => {
     if (onShow) {
       onShow(comments);
     }
-
     setComments([]);
-    setFields({ name: '', email: '', text: '' });
   };
 
   return (

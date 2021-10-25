@@ -7,6 +7,7 @@ const App = () => {
   const [mainList, setMainList] = React.useState([]);
 
   const onShowComments = (obj) => {
+    console.log(`obj: ${obj}`);
     setMainList([...mainList, obj]);
   };
 
