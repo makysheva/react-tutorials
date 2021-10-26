@@ -11,9 +11,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 const Form = ({ onShow }) => {
-  const [comments, setComments] = React.useState(
-    JSON.parse(localStorage.getItem('allComments')) || [],
-  );
+  const [comments, setComments] = React.useState([]);
+
+  React.useEffect(() => {
+    const commentsInLocalStorage = JSON.parse(localStorage.getItem('allComments')) || [];
+    setComments(commentsInLocalStorage);
+  }, []);
 
   const [fields, setFields] = React.useState({ name: '', email: '', text: '' });
 
@@ -35,7 +38,9 @@ const Form = ({ onShow }) => {
     if (onShow) {
       onShow(comments);
     }
-    setComments([]);
+
+    e.target.reset();
+    setFields({ name: '', email: '', text: '' });
   };
 
   return (
@@ -44,48 +49,46 @@ const Form = ({ onShow }) => {
       <Container maxWidth="sm" className={styles.container}>
         <List className={styles.list}>
           <ListItem className={styles.listItem}>
-            <Box component="form" noValidate autoComplete="off">
+            <Box noValidate autoComplete="off">
               <Typography variant="h5" gutterBottom component="div" className={styles.h5}>
                 Обратная связь:
               </Typography>
-              <TextField
-                id="outlined-basic"
-                label="Имя"
-                variant="outlined"
-                className={styles.input}
-                value={fields.name || ''}
-                onChange={handleChangeInput}
-                name="name"
-              />
-              <TextField
-                id="outlined-email-input"
-                label="Почта"
-                variant="outlined"
-                type="email"
-                className={styles.input}
-                value={fields.email || ''}
-                onChange={handleChangeInput}
-                name="email"
-              />
+              <form onSubmit={handleSubmit}>
+                <TextField
+                  id="outlined-basic"
+                  label="Имя"
+                  variant="outlined"
+                  className={styles.input}
+                  value={fields.name || ''}
+                  onChange={handleChangeInput}
+                  name="name"
+                />
+                <TextField
+                  id="outlined-email-input"
+                  label="Почта"
+                  variant="outlined"
+                  type="email"
+                  className={styles.input}
+                  value={fields.email || ''}
+                  onChange={handleChangeInput}
+                  name="email"
+                />
 
-              <TextField
-                id="outlined-textarea"
-                label="Текст"
-                variant="outlined"
-                placeholder="Текст..."
-                multiline
-                className={styles.textarea}
-                value={fields.text || ''}
-                onChange={handleChangeInput}
-                name="text"
-              />
-              <Button
-                variant="contained"
-                className={styles.button}
-                type="submit"
-                onClick={handleSubmit}>
-                Отправить
-              </Button>
+                <TextField
+                  id="outlined-textarea"
+                  label="Текст"
+                  variant="outlined"
+                  placeholder="Текст..."
+                  multiline
+                  className={styles.textarea}
+                  value={fields.text || ''}
+                  onChange={handleChangeInput}
+                  name="text"
+                />
+                <Button variant="contained" className={styles.button} type="submit">
+                  Отправить
+                </Button>
+              </form>
             </Box>
           </ListItem>
         </List>

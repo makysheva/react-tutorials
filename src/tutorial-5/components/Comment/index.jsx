@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Component.module.scss';
+import styles from './Comment.module.scss';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';
@@ -11,7 +11,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 
-const Comment = ({ objData }) => {
+const Comment = ({ mainList }) => {
   return (
     <React.Fragment>
       <CssBaseline />
@@ -23,68 +23,32 @@ const Comment = ({ objData }) => {
                 Отзывы:
               </Typography>
               <List>
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar sx={{ bgcolor: deepOrange[500] }} alt="{props.fullname}">
-                      N
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    // primary="{props.fullname}"
-                    secondary={
-                      <React.Fragment>
-                        <Typography
-                          sx={{ display: 'inline' }}
-                          component="span"
-                          variant="body2"
-                          color="text.primary"></Typography>
-                        {/* "{props.text}" */}
-                      </React.Fragment>
-                    }
-                  />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar sx={{ bgcolor: deepPurple[500] }} alt="{props.fullname}">
-                      OP
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    // primary="{props.fullname}"
-                    secondary={
-                      <React.Fragment>
-                        <Typography
-                          sx={{ display: 'inline' }}
-                          component="span"
-                          variant="body2"
-                          color="text.primary"></Typography>
-                        {/* "{props.text}" */}
-                      </React.Fragment>
-                    }
-                  />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar sx={{ bgcolor: deepOrange[500] }} alt="{props.fullname}">
-                      JJ
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    // primary="{props.fullname}"
-                    secondary={
-                      <React.Fragment>
-                        <Typography
-                          sx={{ display: 'inline' }}
-                          component="span"
-                          variant="body2"
-                          color="text.primary"></Typography>
-                        {/* {props.text} */}
-                      </React.Fragment>
-                    }
-                  />
-                </ListItem>
+                {mainList.map((itemMainList) => {
+                  return itemMainList.map((itemComment, index) => {
+                    return (
+                      <ListItem key={index}>
+                        <ListItemAvatar>
+                          <Avatar sx={{ bgcolor: deepOrange[500] }} alt={itemComment.name}>
+                            N
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText
+                          primary={itemComment.name}
+                          secondary={
+                            <React.Fragment>
+                              <Typography
+                                sx={{ display: 'inline' }}
+                                component="span"
+                                variant="body2"
+                                color="text.primary"></Typography>
+                              {itemComment.text}
+                            </React.Fragment>
+                          }
+                        />
+                      </ListItem>
+                    );
+                  });
+                })}
               </List>
             </Box>
           </ListItem>
