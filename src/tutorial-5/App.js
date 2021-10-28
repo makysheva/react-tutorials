@@ -10,6 +10,14 @@ const App = () => {
     setMainList([...mainList, obj]);
   };
 
+  React.useEffect(() => {
+    setMainList(JSON.parse(localStorage.getItem('allComments')) || []);
+  }, []);
+
+  React.useEffect(() => {
+    localStorage.setItem('allComments', JSON.stringify(mainList));
+  }, [mainList]);
+
   return (
     <>
       <Comment mainList={mainList} />;

@@ -13,16 +13,7 @@ import Button from '@mui/material/Button';
 const Form = ({ onShow }) => {
   const [comments, setComments] = React.useState([]);
 
-  React.useEffect(() => {
-    const commentsInLocalStorage = JSON.parse(localStorage.getItem('allComments')) || [];
-    setComments(commentsInLocalStorage);
-  }, []);
-
   const [fields, setFields] = React.useState({ name: '', email: '', text: '' });
-
-  React.useEffect(() => {
-    localStorage.setItem('allComments', JSON.stringify(comments));
-  }, [comments]);
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -36,7 +27,7 @@ const Form = ({ onShow }) => {
     setComments([...comments, fields]);
 
     if (onShow) {
-      onShow(comments);
+      onShow([...comments, fields]);
     }
 
     e.target.reset();

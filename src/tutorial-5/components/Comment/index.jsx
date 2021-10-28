@@ -23,17 +23,17 @@ const Comment = ({ mainList }) => {
                 Отзывы:
               </Typography>
               <List>
-                {mainList.map((itemMainList) => {
-                  return itemMainList.map((itemComment, index) => {
+                {mainList.map((itemContent) => {
+                  return itemContent.map((item, index) => {
                     return (
                       <ListItem key={index}>
                         <ListItemAvatar>
-                          <Avatar sx={{ bgcolor: deepOrange[500] }} alt={itemComment.name}>
+                          <Avatar sx={{ bgcolor: deepOrange[500] }} alt={item.name}>
                             N
                           </Avatar>
                         </ListItemAvatar>
                         <ListItemText
-                          primary={itemComment.name}
+                          primary={item.name}
                           secondary={
                             <React.Fragment>
                               <Typography
@@ -41,7 +41,7 @@ const Comment = ({ mainList }) => {
                                 component="span"
                                 variant="body2"
                                 color="text.primary"></Typography>
-                              {itemComment.text}
+                              {item.text}
                             </React.Fragment>
                           }
                         />
