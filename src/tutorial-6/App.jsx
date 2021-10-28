@@ -4,7 +4,9 @@ import Article from './components/Article';
 
 export default function App() {
   const { pathname } = window.location;
-  console.log(window.location);
+  let pathnameArr = pathname.split('/');
+  let searchByPathname = pathnameArr.includes('post');
+  let pathnameId = pathnameArr[pathnameArr.length - 1];
 
   return (
     <div className="App">
@@ -19,12 +21,12 @@ export default function App() {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="/home" to="/about">
+            <Nav.Link eventKey="/about" to="/about">
               Обо мне
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="/home" to="/profile">
+            <Nav.Link eventKey="/profile" to="/profile">
               Профиль
             </Nav.Link>
           </Nav.Item>
@@ -49,7 +51,7 @@ export default function App() {
         </Row>
       )}
 
-      <Article />
+      {searchByPathname && <Article id={pathnameId} />}
 
       {pathname === '/about' && (
         <Card>
