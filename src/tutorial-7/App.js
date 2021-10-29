@@ -9,13 +9,13 @@ function App() {
 
   const onSubmit = (values) => {
     console.log('ФОРМА!', values);
-    reset({});
+    reset();
   };
 
   console.log(formState.errors);
 
   const handleClickClear = () => {
-    reset({});
+    reset();
   };
 
   return (
