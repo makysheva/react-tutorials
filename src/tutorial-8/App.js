@@ -4,11 +4,15 @@ const App = () => {
   const [users, setUsers] = React.useState([]);
 
   async function getUsers() {
-    let response = await fetch('https://617d0c8a1eadc5001713638e.mockapi.io/users');
-    let users = await response.json();
-    let result = await setUsers(users);
+    try {
+      let response = await fetch('https://617d0c8a1eadc5001713638e.mockapi.io/users');
+      let users = await response.json();
+      let result = await setUsers(users);
 
-    return result;
+      return result;
+    } catch (err) {
+      alert(err);
+    }
   }
 
   return (
