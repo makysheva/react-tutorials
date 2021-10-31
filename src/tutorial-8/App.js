@@ -6,10 +6,13 @@ const App = () => {
   async function getUsers() {
     try {
       let response = await fetch('https://617d0c8a1eadc5001713638e.mockapi.io/users');
-      let users = await response.json();
-      let result = await setUsers(users);
 
-      return result;
+      if (response.ok) {
+        let users = await response.json();
+        return setUsers(users);
+      } else {
+        throw new Error('Данные не получены');
+      }
     } catch (err) {
       alert(err);
     }
