@@ -8,8 +8,8 @@ const App = () => {
       let response = await fetch('https://617d0c8a1eadc5001713638e.mockapi.io/users');
 
       if (response.ok) {
-        let users = await response.json();
-        return setUsers(users);
+        const users = await response.json();
+        setUsers(users);
       } else {
         throw new Error('Данные не получены');
       }
@@ -21,9 +21,11 @@ const App = () => {
   return (
     <div>
       <ul>
-        {users.map((item) => {
-          return <li key={item.id}>{item.name}</li>;
-        })}
+        {users.length
+          ? users.map((item) => {
+              return <li key={item.id}>{item.name}</li>;
+            })
+          : 'Пустой массив'}
       </ul>
       <button onClick={getUsers}>Список пользователей</button>
     </div>
