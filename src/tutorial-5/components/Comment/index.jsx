@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import { deepOrange } from '@mui/material/colors';
 
 const Comment = ({ mainList }) => {
   return (
@@ -23,31 +23,29 @@ const Comment = ({ mainList }) => {
                 Отзывы:
               </Typography>
               <List>
-                {mainList.map((itemContent) => {
-                  return itemContent.map((item, index) => {
-                    return (
-                      <ListItem key={index}>
-                        <ListItemAvatar>
-                          <Avatar sx={{ bgcolor: deepOrange[500] }} alt={item.name}>
-                            N
-                          </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText
-                          primary={item.name}
-                          secondary={
-                            <React.Fragment>
-                              <Typography
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.primary"></Typography>
-                              {item.text}
-                            </React.Fragment>
-                          }
-                        />
-                      </ListItem>
-                    );
-                  });
+                {mainList.map((item, index) => {
+                  return (
+                    <ListItem key={index}>
+                      <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: deepOrange[500] }} alt={item.name}>
+                          N
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={item.name}
+                        secondary={
+                          <React.Fragment>
+                            <Typography
+                              sx={{ display: 'inline' }}
+                              component="span"
+                              variant="body2"
+                              color="text.primary"></Typography>
+                            {item.text}
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                  );
                 })}
               </List>
             </Box>

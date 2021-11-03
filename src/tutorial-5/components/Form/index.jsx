@@ -11,8 +11,6 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 const Form = ({ onShow }) => {
-  const [comments, setComments] = React.useState([]);
-
   const [fields, setFields] = React.useState({ name: '', email: '', text: '' });
 
   const handleChangeInput = (e) => {
@@ -24,10 +22,8 @@ const Form = ({ onShow }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setComments([...comments, fields]);
-
     if (onShow) {
-      onShow([...comments, fields]);
+      onShow(fields);
     }
 
     e.target.reset();
